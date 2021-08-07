@@ -14,6 +14,7 @@ function Header({pHolder}) {
     
     const router = useRouter();
 
+    const pathname = router.route;
 
 
     const handleSelect = (ranges) => {
@@ -64,11 +65,15 @@ function Header({pHolder}) {
             <div className="flex items-center md:border-2 rounded-full py-2 ">
                 <input 
                 value={searchInput} onChange={(e)=> setSearchInput(e.target.value)}
-                type="text" placeholder={pHolder || "Start Your Search"} className="pl-5 bg-transparent outline-none flex-grow text-sm text-gray-600 placeholder-gray-400"/>
-                <SearchIcon className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2" />
+                type="text" placeholder={pHolder || "Start Your Search"} className="pl-5 bg-transparent outline-none flex-grow text-sm text-gray-600 placeholder-gray-400 placeholder-shown:overflow-ellipsis"/>
+                <SearchIcon className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2 placeholder-shown:overflow-ellipsis" />
             </div>
             
             {/* Right-Side */}
+
+            {
+            pathname=="/Search" ? <p></p>
+             :
             <div className="flex items-center space-x-4 justify-end text-gray-500">
                 <p className="hidden md:inline cursor-pointer">Become a host</p>
                 <GlobeAltIcon className="h-6"/>
@@ -77,6 +82,7 @@ function Header({pHolder}) {
                     <UserCircleIcon className="h-6"/>
                 </div>
             </div>
+}
             {searchInput && 
             <div className="flex flex-col col-span-3 mx-auto">
                 <DateRangePicker 
